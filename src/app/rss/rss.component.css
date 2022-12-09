@@ -1,0 +1,41 @@
+.padding {
+  margin: 10px;
+ }
+
+ .borderNearby {
+  width: 280px;
+  border-style: double;
+}
+
+table {
+  width: 44%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 250px;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  max-width: 300px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.radio-button {
+  margin: 5px;
+}

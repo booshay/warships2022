@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+<div>
+  <form [formGroup]="inputForm">
+
+    <mat-form-field class="padding">
+      <input #nameRef id="inputBase" type="text" matInput placeholder="Base Name" formControlName="base" required>
+    </mat-form-field>
+
+    <mat-form-field class="padding">
+        <input id="inputX" type="tel" matInput placeholder="X" formControlName="x" required>
+      </mat-form-field>
+
+    <mat-form-field class="padding">
+      <input type="tel" matInput placeholder="Y" formControlName="y" required>
+    </mat-form-field>
+
+    <mat-form-field class="padding">
+      <input type="tel" matInput placeholder="Map Sector" formControlName="sector" required>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!inputForm.valid" (click)="addRss()">Submit Form</button>
+  </form>
+</div>
+
+<div class="borderNearby"><!---->
+  <p>Filter--Input your base coords and desired scan area around your base</p>
+  <form [formGroup]="nearbyForm">
+    <mat-form-field class="padding">
+      <input type="tel" matInput placeholder="X" formControlName="x" required>
+    </mat-form-field>
+
+    <mat-form-field class="padding">
+      <input type="tel" matInput placeholder="Y" formControlName="y" required>
+    </mat-form-field>
+
+    <mat-form-field class="padding">
+      <input type="tel" matInput placeholder="Distance" formControlName="distance" required>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!nearbyForm.valid" (click)="nearbyFilter()">Nearby</button>
+    <button mat-stroked-button color="warn" [disabled]="!nearbyForm.valid" (click)="resetFilter()">Reset</button>
+
+  </form>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="base">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Base Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.base}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="x">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> X </th>
+    <td mat-cell *matCellDef="let element"> {{element.x}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="y">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Y </th>
+    <td mat-cell *matCellDef="let element"> {{element.y}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="sector">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sector </th>
+    <td mat-cell *matCellDef="let element"> {{element.sector}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="deleteRss(element.id)">
+          <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

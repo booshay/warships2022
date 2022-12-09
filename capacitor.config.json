@@ -1,0 +1,6 @@
+{
+  "appId": "com.warship.app",
+  "appName": "Warship Coords",
+  "bundledWebRuntime": false,
+  "webDir": "dist/relics"
+}
