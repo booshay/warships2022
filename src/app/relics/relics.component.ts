@@ -1,11 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {DataService} from '../data.service';
+import { DataService } from '../data.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import {AuthService} from '../auth.service';
+import { AuthService } from '../auth.service';
 import { MessageService } from '../message.service';
 
 @Component({
@@ -25,21 +25,21 @@ export class RelicsComponent implements OnInit, AfterViewInit {
   constructor(public router: Router, private fb: FormBuilder, public dataService: DataService,
     public auth: AuthService, private messageService: MessageService) { }
 
-    @ViewChild('nameRef', {static: false}) nameElementRef: ElementRef;
-    @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild('nameRef', { static: false }) nameElementRef: ElementRef;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-    ngAfterViewInit() {
-      this.nameElementRef.nativeElement.focus();
-    }
+  ngAfterViewInit() {
+    this.nameElementRef.nativeElement.focus();
+  }
 
   ngOnInit() {
     this.auth.user.subscribe(data => {
       this.user = data;
       this.dataService.getData('relic', this.user)
-      .subscribe(relics => {
-        this.dataSource.data = relics;
-        this.dataSource.sort = this.sort;
-      });
+        .subscribe(relics => {
+          this.dataSource.data = relics;
+          this.dataSource.sort = this.sort;
+        });
     });
 
     this.myForm = this.fb.group({
@@ -48,7 +48,7 @@ export class RelicsComponent implements OnInit, AfterViewInit {
       y: null
     });
 
-   // document.getElementById('lvl').focus();
+    // document.getElementById('lvl').focus();
 
     this.dataSource.filterPredicate = (data, filter: string) => {
       return data.lvl === filter;
@@ -66,19 +66,18 @@ export class RelicsComponent implements OnInit, AfterViewInit {
   addRelic() {
     const formValue = this.myForm.value;
     if (this.validCoords(formValue)) {
-    for (let i = 0; i < this.dataSource.data.length; i++) {
-      if (this.dataSource.data[i].x === formValue.x && this.dataSource.data[i].y === formValue.y) {
-        this.messageService.showError('That tile already exists.  Add another.', 'Error');
-        this.myForm.reset();
-       // document.getElementById('lvl').focus();
-        return;
+      for (let i = 0; i < this.dataSource.data.length; i++) {
+        if (this.dataSource.data[i].x === formValue.x && this.dataSource.data[i].y === formValue.y) {
+          this.messageService.showError('That tile already exists.  Add another.', 'Error');
+          this.myForm.reset();
+          // document.getElementById('lvl').focus();
+          return;
+        }
       }
+      this.dataService.addCoord('relic', formValue, this.user);
+      this.messageService.showSuccess('Added.  Thank you!!', 'Notification');
+      this.myForm.reset();
     }
-    this.dataService.addCoord('relic', formValue, this.user);
-    this.messageService.showSuccess('Added.  Thank you!!', 'Notification');
-    this.myForm.reset();
-   // document.getElementById('lvl').focus();
-   }
   }
 
   deleteRelic(id) {

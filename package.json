@@ -65,8 +65,8 @@
     "typescript": "^3.5.3"
   },
   "engines": {
-    "node": "11.6.0",
-    "npm": "6.5.0"
+    "node": "16.13.1",
+    "npm": "7.16.0"
   },
   "heroku-run-build-script": true
 }

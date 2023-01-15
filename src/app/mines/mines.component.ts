@@ -126,6 +126,7 @@ export class MinesComponent implements OnInit, AfterViewInit {
       this.dataService.addCoord('mine', formValue, this.user);
       this.messageService.showSuccess('Added.  Thank you!!', 'Notification');
       this.myForm.reset();
+      this.myForm.controls['enhanced'].setValue('0');
     }
   }
 
