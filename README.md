@@ -9,7 +9,6 @@ ZahSucks123**
 
 
 punch list:
--when navbar is collapsed, can't tell which page you are on
 --Add chat to your app
  
 Let users chat with each other without leaving your app.

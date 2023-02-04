@@ -8,11 +8,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuthModule} from '@angular/fire/auth';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
-import {environment} from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,6 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material';
@@ -60,10 +61,11 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatIconModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
     MatDialogModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule ,
+    AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
