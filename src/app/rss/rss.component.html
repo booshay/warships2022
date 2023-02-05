@@ -7,8 +7,8 @@
     </mat-form-field>
 
     <mat-form-field class="padding">
-        <input id="inputX" type="tel" matInput placeholder="X" formControlName="x" required>
-      </mat-form-field>
+      <input id="inputX" type="tel" matInput placeholder="X" formControlName="x" required>
+    </mat-form-field>
 
     <mat-form-field class="padding">
       <input type="tel" matInput placeholder="Y" formControlName="y" required>
@@ -18,7 +18,8 @@
       <input type="tel" matInput placeholder="Map Sector" formControlName="sector" required>
     </mat-form-field>
 
-    <button mat-stroked-button color="primary" type="submit" [disabled]="!inputForm.valid" (click)="addRss()">Submit Form</button>
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!inputForm.valid" (click)="addRss()">Submit
+      Form</button>
   </form>
 </div>
 
@@ -37,7 +38,8 @@
       <input type="tel" matInput placeholder="Distance" formControlName="distance" required>
     </mat-form-field>
 
-    <button mat-stroked-button color="primary" type="submit" [disabled]="!nearbyForm.valid" (click)="nearbyFilter()">Nearby</button>
+    <button mat-stroked-button color="primary" type="submit" [disabled]="!nearbyForm.valid"
+      (click)="nearbyFilter()">Nearby</button>
     <button mat-stroked-button color="warn" [disabled]="!nearbyForm.valid" (click)="resetFilter()">Reset</button>
 
   </form>
@@ -69,7 +71,7 @@
     <th mat-header-cell *matHeaderCellDef> Delete </th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button color="warn" (click)="deleteRss(element.id)">
-          <mat-icon class="mat-18">delete</mat-icon>
+        <mat-icon class="mat-18">delete</mat-icon>
       </button>
     </td>
   </ng-container>
@@ -77,3 +79,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of users"></mat-paginator>

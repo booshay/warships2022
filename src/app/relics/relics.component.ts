@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from '../data.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -26,10 +27,12 @@ export class RelicsComponent implements OnInit, AfterViewInit {
     public auth: AuthService, private messageService: MessageService) { }
 
   @ViewChild('nameRef', { static: false }) nameElementRef: ElementRef;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngAfterViewInit() {
     this.nameElementRef.nativeElement.focus();
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
