@@ -23,8 +23,8 @@ export class MinesComponent implements OnInit, AfterViewInit {
   zoneForm: FormGroup;
   public displayedColumns = ['lvl', 'type', 'x', 'y', 'enhanced', 'delete'];
   public dataSource = new MatTableDataSource<any>();
-  levels = ['All', 46, 48, 50];
-  levelsSelect = ['46', '48', '50'];
+  levels = ['All', 44, 46, 48, 50];
+  levelsSelect = ['44', '46', '48', '50'];
   enhancements = ['0', '50', '100', '150', '200'];
   tileTypes = ['Gold', 'Iron', 'Oil', 'Copper', 'Uranium'];
   lvlvalue: number;
@@ -123,6 +123,7 @@ export class MinesComponent implements OnInit, AfterViewInit {
         if (this.dataSource.data[i].x === formValue.x && this.dataSource.data[i].y === formValue.y) {
           this.messageService.showError('That tile already exists.  Add another.', 'Error');
           this.myForm.reset();
+          this.myForm.controls['enhanced'].setValue('0');
           return;
         }
       }
@@ -143,10 +144,10 @@ export class MinesComponent implements OnInit, AfterViewInit {
 
   validLevel() {
     const lvl = this.myForm.value.lvl;
-    const acceptLvl = [46, 48, 50];
+    const acceptLvl = [44, 46, 48, 50];
 
     if (lvl !== null && acceptLvl.indexOf(Number(lvl)) === -1) {
-      this.messageService.showError('Only levels 46, 48 and 50 are accepted', 'Error');
+      this.messageService.showError('Only levels 44, 46, 48 and 50 are accepted', 'Error');
       this.myForm.reset();
     }
   }
